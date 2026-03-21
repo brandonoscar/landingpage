@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -21,12 +22,12 @@ export default function Navbar() {
             <a href="#features" className="text-sm text-gray-400 transition-colors hover:text-white no-underline">Features</a>
             <a href="#time-savings" className="text-sm text-gray-400 transition-colors hover:text-white no-underline">Benefits</a>
             <a href="#money-savings" className="text-sm text-gray-400 transition-colors hover:text-white no-underline">ROI</a>
-            <a
-              href="#cta"
+            <Link
+              to="/waitlist"
               className="rounded-lg bg-purple-600 px-5 py-2 text-sm font-medium text-white transition-all hover:bg-purple-500 hover:shadow-lg hover:shadow-purple-500/25 no-underline"
             >
               Join the Waitlist
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -45,13 +46,13 @@ export default function Navbar() {
               <a href="#features" onClick={() => setMobileOpen(false)} className="text-sm text-gray-400 hover:text-white no-underline py-1">Features</a>
               <a href="#time-savings" onClick={() => setMobileOpen(false)} className="text-sm text-gray-400 hover:text-white no-underline py-1">Benefits</a>
               <a href="#money-savings" onClick={() => setMobileOpen(false)} className="text-sm text-gray-400 hover:text-white no-underline py-1">ROI</a>
-              <a
-                href="#cta"
+              <Link
+                to="/waitlist"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 rounded-lg bg-purple-600 px-5 py-2.5 text-center text-sm font-medium text-white no-underline"
               >
                 Join the Waitlist
-              </a>
+              </Link>
             </div>
           </div>
         )}

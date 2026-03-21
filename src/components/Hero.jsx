@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Hero() {
   return (
@@ -33,13 +34,13 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
-          <a
-            href="#cta"
+          <Link
+            to="/waitlist"
             className="group flex items-center gap-2 rounded-xl bg-purple-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30 no-underline"
           >
             Join the Waitlist
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </Link>
           <a
             href="#features"
             className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-8 py-3.5 text-base font-medium text-gray-300 transition-all hover:border-white/20 hover:bg-white/10 no-underline"

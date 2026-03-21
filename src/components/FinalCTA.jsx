@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function FinalCTA() {
   return (
@@ -23,15 +24,13 @@ export default function FinalCTA() {
         </p>
 
         <div className="mt-10">
-          <a
-            href="https://tally.so"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/waitlist"
             className="group inline-flex items-center gap-2 rounded-xl bg-purple-600 px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30 no-underline"
           >
             Join the Waitlist
             <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
 
         <p className="mt-4 text-sm text-gray-500">No credit card required. Free during early access.</p>
