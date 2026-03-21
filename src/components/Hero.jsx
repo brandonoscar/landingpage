@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="absolute top-20 left-1/4 h-[300px] w-[400px] rounded-full bg-purple-500/5 blur-[100px]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 text-left">
+      <div className="relative mx-auto max-w-5xl px-6 text-left">
         {/* Badge */}
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-1.5">
           <div className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse" />
