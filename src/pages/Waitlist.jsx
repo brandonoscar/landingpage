@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
 
 export default function Waitlist() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -15,8 +18,26 @@ export default function Waitlist() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    const { error: insertError } = await supabase
+      .from('waitlist')
+      .insert([form])
+
+    setLoading(false)
+
+    if (insertError) {
+      if (insertError.code === '23505') {
+        setError('This email is already on the waitlist!')
+      } else {
+        setError('Something went wrong. Please try again.')
+      }
+      return
+    }
+
     setSubmitted(true)
   }
 
@@ -143,12 +164,17 @@ export default function Waitlist() {
                   </select>
                 </div>
 
+                {error && (
+                  <p className="text-sm text-red-400">{error}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="group flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30"
+                  disabled={loading}
+                  className="group flex w-full items-center justify-center gap-2 rounded-xl bg-purple-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Join the Waitlist
-                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />
+                  {loading ? 'Submitting...' : 'Join the Waitlist'}
+                  {!loading && <ArrowRight size={18} className="transition-transform group-hover:translate-x-0.5" />}
                 </button>
               </form>
 
