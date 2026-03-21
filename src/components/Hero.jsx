@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="absolute top-20 left-1/4 h-[300px] w-[400px] rounded-full bg-purple-500/5 blur-[100px]" />
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6 text-center">
+      <div className="relative mx-auto max-w-7xl px-6 text-left">
         {/* Badge */}
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-1.5">
           <div className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse" />
@@ -17,7 +17,7 @@ export default function Hero() {
         </div>
 
         {/* Heading */}
-        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
+        <h1 className="max-w-5xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
           The First AI-Native Browser{' '}
           <span className="bg-gradient-to-r from-purple-400 to-purple-300 bg-clip-text text-transparent">
             for Property Managers
@@ -25,14 +25,14 @@ export default function Hero() {
         </h1>
 
         {/* Subtext */}
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
+        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400 sm:text-xl">
           You already run your business in a browser — Chrome, Edge, whatever. But it doesn't know your business.
           Helixis is a Chromium browser built for property managers, so the browser you already work in can finally
           understand the work you do — and most importantly, save you time.
         </p>
 
         {/* CTAs */}
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row">
           <a
             href="#cta"
             className="group flex items-center gap-2 rounded-xl bg-purple-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-purple-500/25 transition-all hover:bg-purple-500 hover:shadow-xl hover:shadow-purple-500/30 no-underline"
