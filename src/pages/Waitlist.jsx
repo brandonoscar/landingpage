@@ -38,6 +38,9 @@ export default function Waitlist() {
       return
     }
 
+    // Send email notification (fire-and-forget, don't block the user)
+    supabase.functions.invoke('notify-signup', { body: form }).catch(console.error)
+
     setSubmitted(true)
   }
 
