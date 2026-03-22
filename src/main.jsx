@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Waitlist from './pages/Waitlist.jsx'
+import Verify from './pages/Verify.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/waitlist" element={<Waitlist />} />
+        <Route path="/verify" element={<Verify />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

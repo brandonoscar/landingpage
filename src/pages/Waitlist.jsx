@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 
@@ -23,13 +23,14 @@ export default function Waitlist() {
     setLoading(true)
     setError(null)
 
-    const { error: insertError } = await supabase
+    const { data: inserted, error: insertError } = await supabase
       .from('waitlist')
       .insert([form])
-
-    setLoading(false)
+      .select('verification_token')
+      .single()
 
     if (insertError) {
+      setLoading(false)
       if (insertError.code === '23505') {
         setError('This email is already on the waitlist!')
       } else {
@@ -38,9 +39,19 @@ export default function Waitlist() {
       return
     }
 
-    // Send email notification (fire-and-forget, don't block the user)
-    supabase.functions.invoke('notify-signup', { body: form }).catch(console.error)
+    // Send verification email to the user
+    supabase.functions
+      .invoke('send-verification', {
+        body: {
+          name: form.name,
+          email: form.email,
+          token: inserted.verification_token,
+          siteUrl: window.location.origin,
+        },
+      })
+      .catch(console.error)
 
+    setLoading(false)
     setSubmitted(true)
   }
 
@@ -66,11 +77,15 @@ export default function Waitlist() {
           {submitted ? (
             <div className="text-center">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-purple-500/15">
-                <CheckCircle size={32} className="text-purple-400" />
+                <Mail size={32} className="text-purple-400" />
               </div>
-              <h1 className="text-3xl font-bold text-white">You're on the list!</h1>
+              <h1 className="text-3xl font-bold text-white">Check your email</h1>
               <p className="mt-4 text-lg text-gray-400">
-                We'll reach out soon with early access details.
+                We sent a verification link to <span className="text-white font-medium">{form.email}</span>.
+                Click the link to confirm your spot on the waitlist.
+              </p>
+              <p className="mt-3 text-sm text-gray-500">
+                Don't see it? Check your spam folder.
               </p>
               <Link
                 to="/"
